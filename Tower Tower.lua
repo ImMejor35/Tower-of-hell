@@ -35,7 +35,7 @@ local Toggle = godmode:AddToggle("Invincibility", false, function(toggle)
     getgenv().godmode = toggle
 	char.KillScript.Disabled = toggle
 end)
-local Button = godmode:AddButton("Get all Items", function()
+local Button = godmode:AddButton("Get all Items (Only you can see them)", function()
 	for i,v in pairs(game:GetService("ReplicatedStorage").Gear:GetChildren()) do
         v.Parent = game.Players.LocalPlayer.Backpack 
     end
