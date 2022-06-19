@@ -10,6 +10,9 @@ getgenv().godmode = false
 game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
      char:WaitForChild("KillScript").Disabled = getgenv().godmode
 end)
+--anti afk
+local a=game:GetService("VirtualUser")game:GetService'Players'.LocalPlayer.Idled:Connect(function()a:CaptureController()a:ClickButton2(Vector2.new())end)
+
 game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Changed:Connect(function(change)
     if change == "Text" and getgenv().autofarm == true then
         print(game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text)
