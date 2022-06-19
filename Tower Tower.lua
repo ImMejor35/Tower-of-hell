@@ -62,6 +62,9 @@ end)
 local Box = move:AddBox("JumpPower", function(str)
 	char.Humanoid.JumpPower = tonumber(str)
 end)
+local Toggle = move:AddToggle("Toggle Bunny-Hop", false, function(toggle)
+	game:GetService("ReplicatedStorage").bunnyJumping.Value = toggle
+end)
 local Dropdown = move:AddDropdown("Teleports", {
 	"Finish",
 	"Spawn"
