@@ -1,5 +1,9 @@
+--the disabler script made by myself
+getsenv(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("LocalScript")).kick = function()
+    return; -- replaces kick function with a function that just returns
+end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/IreXion-UI-Library/main/IreXion%20UI%20Library"))()
-local char = game.Players.LocalPlayer.Character or game.Players.LocalPlayer.CharacterAdded:wait()
+local char = game.Players.LocalPlayer
 local Gui = Library:AddGui({
 	Title = {"Tower Tower", "v2"},
 	ThemeColor = Color3.fromRGB(0,200,0),
@@ -17,12 +21,12 @@ game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Changed:Connect(
     if change == "Text" and getgenv().autofarm == true then
         print(game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text)
         if game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text == "0:30" or game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text == "1:00" or game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text == "1:30" then
-            char.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace"):WaitForChild("tower").finishes:FindFirstChild("Finish").Position)
-            char.Humanoid.Jump = true
+            char.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace"):WaitForChild("tower").finishes:FindFirstChild("Finish").Position)
+            char.Character.Humanoid.Jump = true
             wait(.5)
-            char.Humanoid.Jump = true
+            char.Character.Humanoid.Jump = true
             wait(1)
-            char.Humanoid.Jump = true
+            char.Character.Humanoid.Jump = true
         end
     end
 end)
@@ -33,7 +37,7 @@ local Toggle = godmode:AddToggle("Auto-Farm", false, function(toggle)
 end)
 local Toggle = godmode:AddToggle("Invincibility", false, function(toggle)
     getgenv().godmode = toggle
-	char.KillScript.Disabled = toggle
+	char.Character.KillScript.Disabled = toggle
 end)
 local Button = godmode:AddButton("Get all Items (Only you can see them)", function()
 	for i,v in pairs(game:GetService("ReplicatedStorage").Gear:GetChildren()) do
@@ -47,20 +51,13 @@ local Button = godmode:AddButton("Appeal", function()
         appealscript.appeal()
     end
 end)
-local anti = Tab:AddCategory("Anti-Cheat")
-local Button = anti:AddButton("Disable Anti-Cheat", function()
-    --the disabler script made by myself
-    getsenv(game:GetService("Players").LocalPlayer.PlayerScripts.LocalScript).kick = function()
-        return; -- replaces kick function with a function that just returns
-    end
-end)
 local tab2 = Gui:AddTab("Movement")
 local move = tab2:AddCategory("Disable Anti-Cheat before using!")
 local Box = move:AddBox("WalkSpeed", function(str)
-	char.Humanoid.WalkSpeed = tonumber(str)
+	char.Character.Humanoid.WalkSpeed = tonumber(str)
 end)
 local Box = move:AddBox("JumpPower", function(str)
-	char.Humanoid.JumpPower = tonumber(str)
+	char.Character.Humanoid.JumpPower = tonumber(str)
 end)
 local Toggle = move:AddToggle("Toggle Bunny-Hop", false, function(toggle)
 	game:GetService("ReplicatedStorage").bunnyJumping.Value = toggle
@@ -70,9 +67,9 @@ local Dropdown = move:AddDropdown("Teleports", {
 	"Spawn"
 }, function(name)
 	if name == "Finish" then
-        char.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.finish.exit.ParticleBrick.Position)
+        char.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.finish.exit.ParticleBrick.Position)
     elseif name == "Spawn" then
-        char.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.start.center.Position)
+        char.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.start.center.Position)
     end
 end)
 local credits = Gui:AddTab("Credits")
