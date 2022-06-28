@@ -21,12 +21,12 @@ game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Changed:Connect(
     if change == "Text" and getgenv().autofarm == true then
         print(game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text)
         if game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text == "0:30" or game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text == "1:00" or game:GetService("Players").LocalPlayer.PlayerGui.timer.timeLeft.Text == "1:30" then
-            char.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace"):WaitForChild("tower").finishes:FindFirstChild("Finish").Position)
-            char.Character.Humanoid.Jump = true
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace"):WaitForChild("tower").finishes:FindFirstChild("Finish").Position)
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
             wait(.5)
-            char.Character.Humanoid.Jump = true
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
             wait(1)
-            char.Character.Humanoid.Jump = true
+            game.Players.LocalPlayer.Character.Humanoid.Jump = true
         end
     end
 end)
