@@ -3,7 +3,6 @@ getsenv(game:GetService("Players").LocalPlayer.PlayerScripts:WaitForChild("Local
     return; -- replaces kick function with a function that just returns
 end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/IreXion-UI-Library/main/IreXion%20UI%20Library"))()
-local char = game.Players.LocalPlayer
 local Gui = Library:AddGui({
 	Title = {"Tower Tower", "v2"},
 	ThemeColor = Color3.fromRGB(0,200,0),
@@ -12,7 +11,7 @@ local Gui = Library:AddGui({
 getgenv().autofarm = false
 getgenv().godmode = false
 game.Players.LocalPlayer.CharacterAdded:Connect(function(char)
-     char:WaitForChild("KillScript").Disabled = getgenv().godmode
+     game.Players.LocalPlayer:WaitForChild("KillScript").Disabled = getgenv().godmode
 end)
 --anti afk
 local a=game:GetService("VirtualUser")game:GetService'Players'.LocalPlayer.Idled:Connect(function()a:CaptureController()a:ClickButton2(Vector2.new())end)
@@ -37,7 +36,7 @@ local Toggle = godmode:AddToggle("Auto-Farm", false, function(toggle)
 end)
 local Toggle = godmode:AddToggle("Invincibility", false, function(toggle)
     getgenv().godmode = toggle
-	char.Character.KillScript.Disabled = toggle
+    game.Players.LocalPlayer.Character.KillScript.Disabled = toggle
 end)
 local Button = godmode:AddButton("Get all Items (Only you can see them)", function()
 	for i,v in pairs(game:GetService("ReplicatedStorage").Gear:GetChildren()) do
@@ -54,10 +53,10 @@ end)
 local tab2 = Gui:AddTab("Movement")
 local move = tab2:AddCategory("Disable Anti-Cheat before using!")
 local Box = move:AddBox("WalkSpeed", function(str)
-	char.Character.Humanoid.WalkSpeed = tonumber(str)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = tonumber(str)
 end)
 local Box = move:AddBox("JumpPower", function(str)
-	char.Character.Humanoid.JumpPower = tonumber(str)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = tonumber(str)
 end)
 local Toggle = move:AddToggle("Toggle Bunny-Hop", false, function(toggle)
 	game:GetService("ReplicatedStorage").bunnyJumping.Value = toggle
@@ -67,9 +66,9 @@ local Dropdown = move:AddDropdown("Teleports", {
 	"Spawn"
 }, function(name)
 	if name == "Finish" then
-        char.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.finish.exit.ParticleBrick.Position)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.finish.exit.ParticleBrick.Position)
     elseif name == "Spawn" then
-        char.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.start.center.Position)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Workspace").tower.sections.start.center.Position)
     end
 end)
 local credits = Gui:AddTab("Credits")
